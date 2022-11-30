@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Banner from "../components/banner/banner";
+import Card from "../components/card/card";
 import NavBar from "../components/navbar/navbar";
 import styles from "../styles/Home.module.css";
 
@@ -19,6 +20,9 @@ export default function Home() {
         subTitle="Alesseria's Favourite movie"
         imgUrl="/static/chocolate-factor.jpg"
       />
+      <Card imgUrl="/static/chocolate-factor.jpg" size="large" />
+      <Card imgUrl="/static/chocolate-factor.jpg" size="medium" />
+      <Card imgUrl="/static/chocolate-factor.jpg" size="small" />
     </div>
   );
 }
