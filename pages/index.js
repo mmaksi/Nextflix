@@ -4,24 +4,12 @@ import Banner from "../components/banner/banner";
 import Card from "../components/card/card";
 import SectionCards from "../components/card/sectionCards";
 import NavBar from "../components/navbar/navbar";
+import getVideos from "../lib/videos";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
   // Component Logic
-  const disneyVideos = [
-    {
-      imgUrl: "/static/chocolate-factor.jpg",
-    },
-    {
-      imgUrl: "/static/chocolate-factor.jpg",
-    },
-    {
-      imgUrl: "/static/chocolate-factor.jpg",
-    },
-    {
-      imgUrl: "/static/chocolate-factor.jpg",
-    },
-  ];
+  const disneyVideos = getVideos();
 
   return (
     <div className={styles.container}>
@@ -43,6 +31,18 @@ export default function Home() {
           title="Disney"
           videos={disneyVideos}
           size="large"
+        ></SectionCards>
+
+        <SectionCards
+          title="Disney"
+          videos={disneyVideos}
+          size="small"
+        ></SectionCards>
+
+        <SectionCards
+          title="Disney"
+          videos={disneyVideos}
+          size="medium"
         ></SectionCards>
       </div>
     </div>
