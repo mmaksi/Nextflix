@@ -7,10 +7,19 @@ import NavBar from "../components/navbar/navbar";
 import getVideos from "../lib/videos";
 import styles from "../styles/Home.module.css";
 
-export default function Home() {
-  // Component Logic
-  const disneyVideos = getVideos();
+export async function getServerSideProps() {
+  const disneyVideos = await getVideos("modern disney trailer");
+  const travelVideos = await getVideos("travel");
+  const productivityVideos = await getVideos("productivity");
+  // const popularVideos = await getVideos("travel");
+  return { props: { disneyVideos, travelVideos, productivityVideos } };
+}
 
+export default function Home({
+  disneyVideos,
+  travelVideos,
+  productivityVideos,
+}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -34,16 +43,22 @@ export default function Home() {
         ></SectionCards>
 
         <SectionCards
-          title="Disney"
-          videos={disneyVideos}
+          title="Travel"
+          videos={travelVideos}
           size="small"
         ></SectionCards>
 
         <SectionCards
-          title="Disney"
-          videos={disneyVideos}
+          title="Productivity"
+          videos={productivityVideos}
           size="medium"
         ></SectionCards>
+
+        {/* <SectionCards
+          title="popular"
+          videos={disneyVideos}
+          size="small"
+        ></SectionCards> */}
       </div>
     </div>
   );

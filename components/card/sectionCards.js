@@ -1,11 +1,14 @@
 import Card from "./card";
 import styles from "./sectionCards.module.css";
 
-const SectionCards = ({ title, videos, size }) => {
+const SectionCards = ({ title, videos = [], size }) => {
   return (
     <section className={styles.container}>
       <h2 className={styles.title}>{title}</h2>
-      <div className={styles.cardWrapper}>
+      <div
+        className={styles.cardWrapper}
+        style={{ scrollbarColor: "red yellow" }}
+      >
         {videos.map((card, index) => (
           <Card
             key={index}
