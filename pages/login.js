@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 import styles from "../styles/Login.module.css";
@@ -9,12 +10,17 @@ const Login = () => {
   // Hooks
   const [userMessage, setUserMessage] = useState("");
   const [email, setEmail] = useState("");
+  const router = useRouter();
 
   // Component Logic
   function handleLoginWithEmail(e) {
     e.preventDefault();
     if (email) {
-      // Route to dashboard
+      if (email === "mmaksi.dev@gmail.com") {
+        router.push("/");
+      } else {
+        setUserMessage("Something went wrong logging in");
+      }
     } else {
       // Show user message
       setUserMessage("Enter a valid email");
@@ -49,7 +55,7 @@ const Login = () => {
       </header>
 
       <main className={styles.main}>
-        <div className={styles.mainWrapper}>
+        <form className={styles.mainWrapper}>
           <h1 className={styles.signinHeader}>Sign In</h1>
           <input
             onChange={handleEmailChange}
@@ -58,10 +64,14 @@ const Login = () => {
             placeholder="Email Address"
           />
           <p className={styles.userMsg}>{userMessage}</p>
-          <button className={styles.loginBtn} onClick={handleLoginWithEmail}>
+          <button
+            type="submit"
+            className={styles.loginBtn}
+            onClick={handleLoginWithEmail}
+          >
             Sign In
           </button>
-        </div>
+        </form>
       </main>
     </div>
   );
