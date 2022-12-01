@@ -2,10 +2,27 @@ import Head from "next/head";
 import Image from "next/image";
 import Banner from "../components/banner/banner";
 import Card from "../components/card/card";
+import SectionCards from "../components/card/sectionCards";
 import NavBar from "../components/navbar/navbar";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
+  // Component Logic
+  const disneyVideos = [
+    {
+      imgUrl: "/static/chocolate-factor.jpg",
+    },
+    {
+      imgUrl: "/static/chocolate-factor.jpg",
+    },
+    {
+      imgUrl: "/static/chocolate-factor.jpg",
+    },
+    {
+      imgUrl: "/static/chocolate-factor.jpg",
+    },
+  ];
+
   return (
     <div className={styles.container}>
       <Head>
@@ -20,13 +37,14 @@ export default function Home() {
         subTitle="Alesseria's Favourite movie"
         imgUrl="/static/chocolate-factor.jpg"
       />
-      <Card
-        imgUrl="/static/chocolate-factor.jpg"
-        size="large"
-        priority={true}
-      />
-      <Card imgUrl="/static/chocolate-factors.jpg" size="medium" />
-      <Card imgUrl="/static/chocolate-factors.jpg" size="small" />
+
+      <div className={styles.sectionWrapper}>
+        <SectionCards
+          title="Disney"
+          videos={disneyVideos}
+          size="large"
+        ></SectionCards>
+      </div>
     </div>
   );
 }
