@@ -20,9 +20,13 @@ export default function Home() {
         subTitle="Alesseria's Favourite movie"
         imgUrl="/static/chocolate-factor.jpg"
       />
-      <Card imgUrl="/static/chocolate-factor.jpg" size="large" />
-      <Card imgUrl="/static/chocolate-factor.jpg" size="medium" />
-      <Card imgUrl="/static/chocolate-factor.jpg" size="small" />
+      <Card
+        imgUrl="/static/chocolate-factor.jpg"
+        size="large"
+        priority={true}
+      />
+      <Card imgUrl="/static/chocolate-factors.jpg" size="medium" />
+      <Card imgUrl="/static/chocolate-factors.jpg" size="small" />
     </div>
   );
 }

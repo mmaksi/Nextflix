@@ -23,6 +23,7 @@ const Banner = ({ title, subTitle, imgUrl }) => {
                 alt="play icon"
                 width={32}
                 height={32}
+                priority={true}
               />
               <span className={styles.playText}>Play</span>
             </button>

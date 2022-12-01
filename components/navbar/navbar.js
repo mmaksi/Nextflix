@@ -10,8 +10,6 @@ const NavBar = ({ username }) => {
   const router = useRouter();
   const [showDropdown, setShowDropdown] = useState(false);
 
-  console.log(showDropdown);
-
   // Event handlers
   const homeClickHandler = (e) => {
     e.preventDefault();
@@ -51,10 +49,8 @@ const NavBar = ({ username }) => {
         </ul>
         <nav className={styles.navContainer}>
           <div>
-            <button className={styles.usernameBtn}>
-              <p className={styles.username} onClick={toggleDropdown}>
-                {username}
-              </p>
+            <button className={styles.usernameBtn} onClick={toggleDropdown}>
+              <p className={styles.username}>{username}</p>
               <Image
                 src="/static/expand_more.svg"
                 alt="expand icon"
