@@ -11,14 +11,14 @@ const Login = () => {
   // Hooks
   const [userMessage, setUserMessage] = useState("");
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   // Component Logic
   async function handleLoginWithEmail(e) {
     e.preventDefault();
     if (email) {
-      // await magic.auth.loginWithMagicLink({ email: "your.email@example.com" });
-
+      setIsLoading(true);
       if (email === "mmaksi.dev@gmail.com") {
         try {
           const didToken = await magic.auth.loginWithMagicLink({
@@ -30,13 +30,16 @@ const Login = () => {
         } catch (error) {
           // Handle errors if required!
           console.log("Something went wrong", error);
+          setIsLoading(false);
         }
       } else {
         setUserMessage("Something went wrong logging in");
+        setIsLoading(false);
       }
     } else {
       // Show user message
       setUserMessage("Enter a valid email");
+      setIsLoading(false);
     }
   }
 
@@ -82,7 +85,7 @@ const Login = () => {
             className={styles.loginBtn}
             onClick={handleLoginWithEmail}
           >
-            Sign In
+            {isLoading ? "Please wait..." : "Sign In"}
           </button>
         </form>
       </main>
