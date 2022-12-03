@@ -17,19 +17,18 @@ const robotoSlab = Roboto_Slab({
 
 export default function MyApp({ Component, pageProps }) {
   // Hooks
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  console.log(router);
   useEffect(() => {
-    async function checkUser() {
-      const isLoggedIn = await magic.user.isLoggedIn();
-      if (isLoggedIn) {
-        router.push("/");
-      } else {
-        router.push("/login");
-      }
-    }
-    checkUser();
+    // async function checkUser() {
+    //   const isLoggedIn = await magic.user.isLoggedIn();
+    //   if (isLoggedIn) {
+    //     router.push("/");
+    //   } else {
+    //     router.push("/login");
+    //   }
+    // }
+    // checkUser();
   }, []);
 
   useEffect(() => {

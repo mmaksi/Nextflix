@@ -1,8 +1,5 @@
 import Head from "next/head";
-import Image from "next/image";
-import { useEffect } from "react";
 import Banner from "../components/banner/banner";
-import Card from "../components/card/card";
 import SectionCards from "../components/card/sectionCards";
 import NavBar from "../components/navbar/navbar";
 import getVideos from "../lib/videos";
@@ -32,6 +29,7 @@ export default function Home({
 
       <NavBar username="markmaksi@icloud.com" />
       <Banner
+        videoId="2WKPKnggJqk"
         title="Charlie and the Chocolate Factory"
         subTitle="Alesseria's Favourite movie"
         imgUrl="/static/chocolate-factor.jpg"

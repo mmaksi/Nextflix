@@ -1,7 +1,10 @@
+import Link from "next/link";
 import Card from "./card";
 import styles from "./sectionCards.module.css";
 
-const SectionCards = ({ title, videos = [], size }) => {
+const SectionCards = (cardsVideos) => {
+  console.log({ cardsVideos });
+  const { title, videos = [], size } = cardsVideos;
   return (
     <section className={styles.container}>
       <h2 className={styles.title}>{title}</h2>
@@ -9,14 +12,15 @@ const SectionCards = ({ title, videos = [], size }) => {
         className={styles.cardWrapper}
         style={{ scrollbarColor: "red yellow" }}
       >
-        {videos.map((card, index) => (
-          <Card
-            key={index}
-            id={index}
-            imgUrl={card.imgUrl}
-            size={size}
-            priority={true}
-          />
+        {videos.map((video) => (
+          <Link key={video.id} href={`/video/${video.id}`}>
+            <Card
+              id={video.id}
+              imgUrl={video.imgUrl}
+              size={size}
+              priority={true}
+            />
+          </Link>
         ))}
       </div>
     </section>
