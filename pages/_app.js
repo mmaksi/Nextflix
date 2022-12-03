@@ -19,6 +19,7 @@ export default function MyApp({ Component, pageProps }) {
   // Hooks
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
+  console.log(router);
   useEffect(() => {
     async function checkUser() {
       const isLoggedIn = await magic.user.isLoggedIn();
@@ -29,7 +30,7 @@ export default function MyApp({ Component, pageProps }) {
       }
     }
     checkUser();
-  }, [router]);
+  }, []);
 
   useEffect(() => {
     /**
@@ -49,7 +50,7 @@ export default function MyApp({ Component, pageProps }) {
       router.events.off("routeChangeComplete", handleRouteChange);
       router.events.off("routeChangeError", handleRouteChange);
     };
-  }, [router.events]);
+  }, []);
 
   return isLoading ? (
     <Loader />

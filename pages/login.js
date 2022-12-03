@@ -20,6 +20,7 @@ const Login = () => {
      * for better UX
      */
     const handleRouteChange = () => {
+      console.log("Called.Called.Called.Called.Called.Called.Called.Called.");
       setIsLoading(false);
     };
 
@@ -32,7 +33,7 @@ const Login = () => {
       router.events.off("routeChangeComplete", handleRouteChange);
       router.events.off("routeChangeError", handleRouteChange);
     };
-  }, [router.events]);
+  }, []);
 
   // Component Logic
   async function handleLoginWithEmail(e) {
