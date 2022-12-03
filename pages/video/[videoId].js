@@ -3,22 +3,39 @@ import Modal from "react-modal";
 
 import styles from "../../styles/Video.module.css";
 
-import cls from "classnames";
+import clsx from "classnames";
+import { getVideoById } from "../../lib/videos";
 
 Modal.setAppElement("#__next");
 
-const Video = () => {
+export async function getStaticProps() {
+  const videoId = "2WKPKnggJqk";
+  const videoArray = await getVideoById(videoId);
+  return {
+    props: {
+      video: videoArray.length > 0 ? videoArray[0] : {},
+    },
+    revalidate: 10,
+  };
+}
+
+export async function getStaticPaths() {
+  const videos = ["OFVGCUIXJls", "2WKPKnggJqk", "wcdBCanllNA"];
+
+  // Get the paths we want to pre-render based on videos ids
+  const paths = videos.map((videoId) => ({
+    params: { videoId },
+  }));
+
+  // We'll pre-render only these paths at build time.
+  // { fallback: blocking } will server-render pages
+  // on-demand if the path doesn't exist.
+  return { paths, fallback: "blocking" };
+}
+
+const Video = ({ video }) => {
   const router = useRouter();
   const { videoId } = router.query;
-
-  const video = {
-    title: "Hi cutie",
-    publishTime: "1990-01-01",
-    description:
-      "loremasd dd s dasd aksdkl kasd almsd mldsmda mdssm asmkm akm daka kmd kams",
-    channelTitle: "Mark Loves Pizza",
-    viewCount: 15220,
-  };
 
   const { title, publishTime, description, channelTitle, viewCount } = video;
 
@@ -50,12 +67,11 @@ const Video = () => {
               <p className={styles.description}>{description}</p>
             </div>
             <div className={styles.col2}>
-              <p className={cls(styles.subText, styles.subTextWrapper)}>
+              <p className={clsx(styles.subText, styles.subTextWrapper)}>
                 <span className={styles.textColor}>Cast: </span>
                 <span className={styles.channelTitle}>{channelTitle}</span>
               </p>
-
-              <p className={cls(styles.subText, styles.subTextWrapper)}>
+              <p className={clsx(styles.subText, styles.subTextWrapper)}>
                 <span className={styles.textColor}>View Count: </span>
                 <span className={styles.channelTitle}>{viewCount}</span>
               </p>

@@ -2,7 +2,7 @@ import Head from "next/head";
 import Banner from "../components/banner/banner";
 import SectionCards from "../components/card/sectionCards";
 import NavBar from "../components/navbar/navbar";
-import getVideos from "../lib/videos";
+import { getVideos } from "../lib/videos";
 import styles from "../styles/Home.module.css";
 
 export async function getServerSideProps() {
