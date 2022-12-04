@@ -20,7 +20,6 @@ const Login = () => {
      * for better UX
      */
     const handleRouteChange = () => {
-      console.log("Called.Called.Called.Called.Called.Called.Called.Called.");
       setIsLoading(false);
     };
 

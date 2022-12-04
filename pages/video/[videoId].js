@@ -57,7 +57,7 @@ const Video = ({ video }) => {
           width="100%"
           height="390"
           src={`http://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=http://example.com&controls=0&autoplay=1&rel=0`}
-          frameborder="0"
+          frameBorder="0"
         ></iframe>
         <div className={styles.modalBody}>
           <div className={styles.modalBodyContent}>

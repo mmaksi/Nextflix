@@ -43,7 +43,6 @@ const NavBar = () => {
     try {
       await magic.user.logout();
       const isLoggedIn = await magic.user.isLoggedIn();
-      console.log({ isLoggedIn });
       if (!isLoggedIn) {
         router.push("/login");
       }

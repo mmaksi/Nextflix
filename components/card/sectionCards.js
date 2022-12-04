@@ -3,7 +3,7 @@ import Card from "./card";
 import styles from "./sectionCards.module.css";
 
 const SectionCards = (cardsVideos) => {
-  console.log({ cardsVideos });
+  console.log("awal disney", cardsVideos.videos[0]);
   const { title, videos = [], size } = cardsVideos;
   return (
     <section className={styles.container}>
