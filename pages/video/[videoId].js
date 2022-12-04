@@ -5,11 +5,12 @@ import styles from "../../styles/Video.module.css";
 
 import clsx from "classnames";
 import { getVideoById } from "../../lib/videos";
+import NavBar from "../../components/navbar/navbar";
 
 Modal.setAppElement("#__next");
 
-export async function getStaticProps() {
-  const videoId = "2WKPKnggJqk";
+export async function getStaticProps(context) {
+  const videoId = context.params.videoId;
   const videoArray = await getVideoById(videoId);
   return {
     props: {
@@ -41,6 +42,7 @@ const Video = ({ video }) => {
 
   return (
     <div className={styles.container}>
+      <NavBar />
       <Modal
         className={styles.modal}
         isOpen={true}
