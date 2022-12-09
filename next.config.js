@@ -1,25 +1,27 @@
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
   reactStrictMode: false,
+  // images: {
+  //   domains: ["images.unsplash.com", "i.ytimg.com", "yt3.ggpht.com"],
+  // },
   images: {
     remotePatterns: [
       {
         protocol: "https",
         hostname: "images.unsplash.com",
-        port: "",
-        pathname: "/**",
+        pathname: "**",
       },
       {
         protocol: "https",
         hostname: "i.ytimg.com",
-        port: "",
-        pathname: "/**",
+        pathname: "/vi/**",
       },
       {
         protocol: "https",
         hostname: "yt3.ggpht.com",
-        port: "",
-        pathname: "/**",
+        pathname: "**",
       },
     ],
   },
