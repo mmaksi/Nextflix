@@ -16,11 +16,10 @@ const NavBar = () => {
     async function getEmailAddress() {
       try {
         const didToken = await magic.user.getIdToken();
-        console.log({ didToken });
         const { email } = await magic.user.getMetadata();
         if (email) setUsername(email);
       } catch (error) {
-        console.log("Error retrieving email", error);
+        console.error("Error retrieving email", error);
       }
     }
     getEmailAddress();
@@ -50,7 +49,7 @@ const NavBar = () => {
       }
     } catch (error) {
       router.push("/login");
-      console.log("Error logging out", error);
+      console.error("Error logging out", error);
     }
   };
 

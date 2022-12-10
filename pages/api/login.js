@@ -1,6 +1,6 @@
 import { magicAdmin } from "../../lib/magic-server";
 import jwt from "jsonwebtoken";
-import { isNewUser } from "../../lib/db/hasura";
+import { isNewUser, createNewUser } from "../../lib/db/hasura";
 
 export default async function login(req, res) {
   if (req.method === "POST") {
@@ -13,7 +13,6 @@ export default async function login(req, res) {
       const { issuer, email } = metadata; // issuer is hasura user id
       // TODO: Create JWT token
       // Sign Hasura example + metadata
-      console.log(issuer);
       const jwtToken = jwt.sign(
         {
           ...metadata,
@@ -27,11 +26,18 @@ export default async function login(req, res) {
         },
         process.env.JWT_SECRET
       );
-      // // TODO: Check if user exists
+      // TODO: Check if user exists
       const isNewUserQuery = await isNewUser(jwtToken, issuer);
-      console.log({ isNewUserQuery });
-      // // TODO: Pass the JWT Token to Hasura function
-      return res.status(200).json({ done: true, isNewUserQuery });
-    } catch (error) {}
+      // Create a new user if it doesn't exist
+      isNewUserQuery && (await createNewUser(jwtToken, metadata));
+      // Set a cookie for the user
+      setTokenCookie(jwtToken, res);
+      res.status(200).json({ done: true });
+    } catch (error) {
+      console.error("Something went wrong logging in", error);
+      res.status(500).json({ done: false });
+    }
+  } else {
+    res.status(500).json({ done: false });
   }
 }
