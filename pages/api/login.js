@@ -31,7 +31,6 @@ export default async function login(req, res) {
       const isNewUserQuery = await isNewUser(jwtToken, issuer);
       // Create a new user if it doesn't exist
       isNewUserQuery && (await createNewUser(jwtToken, metadata));
-      console.log(await createNewUser(jwtToken, metadata));
       // Set a cookie for the user
       setTokenCookie(jwtToken, res);
       res.status(200).json({ done: true });

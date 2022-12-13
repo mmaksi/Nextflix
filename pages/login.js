@@ -13,7 +13,6 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-
   useEffect(() => {
     /**
      * Setting loading state to false after route change event is complete
@@ -52,7 +51,6 @@ const Login = () => {
             },
           });
           const loggedInResponse = await response.json();
-          console.log({ loggedInResponse });
           if (loggedInResponse.done) {
             router.push("/");
           } else {
