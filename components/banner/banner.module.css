@@ -35,7 +35,7 @@
 .series {
   font-size: 0.875rem /* 14px */;
   line-height: 1.25rem /* 20px */;
-  color: var(--white10);
+  color: black;
   align-self: center;
 }
 
@@ -51,7 +51,7 @@
   font-size: 1.125rem /* 18px */;
   line-height: 1.75rem /* 28px */;
   color: var(--white10);
-  -webkit-text-stroke: 1px gray; /* width and color */
+  -webkit-text-stroke: 1px black; /* width and color */
 }
 
 .playBtnWrapper {
@@ -81,7 +81,7 @@
   --tw-gradient-from: var(--black);
 
   background-size: cover;
-  background-position: 26%;
+  background-position: 29%;
 }
 
 .btnWithIcon {
@@ -117,7 +117,7 @@
     --tw-gradient-from: var(--black);
 
     background-size: cover;
-    background-position: 0 -110px;
+    background-position: 0;
   }
 }
 
