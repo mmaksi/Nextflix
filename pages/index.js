@@ -2,22 +2,44 @@ import Head from "next/head";
 import Banner from "../components/banner/banner";
 import SectionCards from "../components/card/sectionCards";
 import NavBar from "../components/navbar/navbar";
-import { getVideos } from "../lib/videos";
+import { getVideos, getWatchItAgainVideos } from "../lib/videos";
 import styles from "../styles/Home.module.css";
+import { redirectUser } from "../utils/redirectUser";
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   // Component Logic
-  const disneyVideos = await getVideos("modern disney trailer");
-  const travelVideos = await getVideos("travel");
-  const productivityVideos = await getVideos("productivity");
-  // const popularVideos = await getVideos("travel");
-  return { props: { disneyVideos, travelVideos, productivityVideos } };
+  const { userId, token } = await redirectUser(context);
+  // If there is no authenticated user, redirects to login page
+  if (!userId) {
+    return {
+      props: {},
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  } else {
+    const watchItAgainVideos = await getWatchItAgainVideos(userId, token);
+    const disneyVideos = await getVideos("modern disney trailer");
+    const travelVideos = await getVideos("travel");
+    const productivityVideos = await getVideos("productivity");
+    // const popularVideos = await getVideos("travel");
+    return {
+      props: {
+        disneyVideos,
+        travelVideos,
+        productivityVideos,
+        watchItAgainVideos,
+      },
+    };
+  }
 }
 
 export default function Home({
   disneyVideos,
   travelVideos,
   productivityVideos,
+  watchItAgainVideos,
 }) {
   return (
     <div className={styles.container}>
@@ -41,6 +63,12 @@ export default function Home({
           videos={disneyVideos}
           size="large"
         ></SectionCards>
+
+        <SectionCards
+          title="Watch it again"
+          videos={watchItAgainVideos}
+          size="small"
+        />
 
         <SectionCards
           title="Travel"
