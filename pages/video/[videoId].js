@@ -47,13 +47,26 @@ const Video = ({ video }) => {
   const [toggleDisLike, setToggleDisLike] = useState(false);
 
   // * Event Handlers
+  const runRatingService = async (favourited) => {
+    return await fetch("/api/stats", {
+      method: "POST",
+      body: JSON.stringify({
+        videoId,
+        favourited,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
+
   const handleToggleDislike = async () => {
     setToggleDisLike(!toggleDisLike);
     setToggleLike(toggleDisLike);
 
     const val = !toggleDisLike;
     const favourited = val ? 0 : 1;
-    // const response = await runRatingService(favourited);
+    const response = await runRatingService(favourited);
   };
 
   const handleToggleLike = async () => {
@@ -62,7 +75,7 @@ const Video = ({ video }) => {
     setToggleDisLike(toggleLike);
 
     const favourited = val ? 1 : 0;
-    // const response = await runRatingService(favourited);
+    const response = await runRatingService(favourited);
   };
 
   // * Component
