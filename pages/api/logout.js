@@ -1,4 +1,4 @@
-import { magicAdmin } from "../../lib/magic";
+import { magicAdmin } from "../../lib/magic-server";
 import { removeTokenCookie } from "../../lib/cookies";
 import { verifyToken } from "../../lib/utils";
 
