@@ -64,11 +64,13 @@ export default function Home({
           size="large"
         ></SectionCards>
 
-        <SectionCards
-          title="Watch it again"
-          videos={watchItAgainVideos}
-          size="small"
-        />
+        {watchItAgainVideos.length > 0 && (
+          <SectionCards
+            title="Watch it again"
+            videos={watchItAgainVideos}
+            size="small"
+          />
+        )}
 
         <SectionCards
           title="Travel"
