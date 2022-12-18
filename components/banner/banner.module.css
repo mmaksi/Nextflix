@@ -35,7 +35,7 @@
 .series {
   font-size: 0.875rem /* 14px */;
   line-height: 1.25rem /* 20px */;
-  color: var(--gray20);
+  color: var(--white10);
   align-self: center;
 }
 
@@ -81,7 +81,7 @@
   --tw-gradient-from: var(--black);
 
   background-size: cover;
-  background-position: "50% 50%";
+  background-position: 26%;
 }
 
 .btnWithIcon {
@@ -117,7 +117,7 @@
     --tw-gradient-from: var(--black);
 
     background-size: cover;
-    background-position: 10% 60%;
+    background-position: 0 -110px;
   }
 }
 
