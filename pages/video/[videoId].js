@@ -8,7 +8,7 @@ import { getVideoById } from "../../lib/videos";
 import NavBar from "../../components/navbar/navbar";
 import Like from "../../components/icons/like-icon";
 import DisLike from "../../components/icons/dislike-icon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 Modal.setAppElement("#__next");
 
@@ -38,10 +38,30 @@ export async function getStaticPaths() {
 }
 
 const Video = ({ video }) => {
+  // Hooks
   const router = useRouter();
   const { videoId } = router.query;
-
   const { title, publishTime, description, channelTitle, viewCount } = video;
+
+  useEffect(() => {
+    const handleLikeDislikeService = async () => {
+      const response = await fetch(`/api/stats?videoId=${videoId}`, {
+        method: "GET",
+      });
+      const data = await response.json();
+      console.log(data);
+
+      if (data.length > 0) {
+        const favourited = data[0].favourited;
+        if (favourited === 1) {
+          setToggleLike(true);
+        } else if (favourited === 0) {
+          setToggleDisLike(true);
+        }
+      }
+    };
+    handleLikeDislikeService();
+  }, [videoId]);
 
   const [toggleLike, setToggleLike] = useState(false);
   const [toggleDisLike, setToggleDisLike] = useState(false);
