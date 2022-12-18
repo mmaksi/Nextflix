@@ -40,16 +40,22 @@ const NavBar = () => {
     setShowDropdown(!showDropdown);
   };
 
-  const handleSignOut = async () => {
+  const handleSignOut = async (e) => {
+    e.preventDefault();
+
     try {
-      await magic.user.logout();
-      const isLoggedIn = await magic.user.isLoggedIn();
-      if (!isLoggedIn) {
-        router.push("/login");
-      }
+      const response = await fetch("/api/logout", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${didToken}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      const res = await response.json();
     } catch (error) {
-      router.push("/login");
       console.error("Error logging out", error);
+      router.push("/login");
     }
   };
 
